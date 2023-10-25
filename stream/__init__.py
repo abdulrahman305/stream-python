@@ -5,7 +5,7 @@ __author__ = "Thierry Schellenbach"
 __copyright__ = "Copyright 2022, Stream.io, Inc"
 __credits__ = ["Thierry Schellenbach, mellowmorning.com, @tschellenbach"]
 __license__ = "BSD-3-Clause"
-__version__ = "5.2.1"
+__version__ = "5.3.1"
 __maintainer__ = "Thierry Schellenbach"
 __email__ = "support@getstream.io"
 __status__ = "Production"
@@ -30,6 +30,9 @@ def connect(
     :param use_async: flag to set AsyncClient
     """
     from stream.client import AsyncStreamClient, StreamClient
+
+    if location is None:
+        location = os.environ.get("STREAM_REGION")
 
     stream_url = os.environ.get("STREAM_URL")
     # support for the heroku STREAM_URL syntax
